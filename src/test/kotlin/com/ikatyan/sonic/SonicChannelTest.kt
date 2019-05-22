@@ -1,10 +1,10 @@
 package com.ikatyan.sonic
 
 import com.ikatyan.sonic.commands.Action
-import io.kotlintest.*
-import io.kotlintest.matchers.startWith
+import io.kotlintest.shouldNotThrowAny
+import io.kotlintest.shouldNotThrowAnyUnit
+import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
-import kotlinx.coroutines.runBlocking
 
 class SonicChannelTest : StringSpec() {
     private val sonic = SonicChannel {
@@ -44,7 +44,7 @@ class SonicChannelTest : StringSpec() {
                 }
             }
 
-            shouldNotThrowAnyUnit {
+            shouldThrow<IllegalArgumentException> {
                 sonic.search {
                     suggest(collection, " ", "word", 10)
                 }
